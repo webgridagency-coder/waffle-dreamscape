@@ -6,6 +6,7 @@ import ParticleBackground from "@/components/ParticleBackground";
 import Navigation from "@/components/Navigation";
 
 const HeroSection = lazy(() => import("@/components/sections/HeroSection"));
+const ScrollStorySection = lazy(() => import("@/components/sections/ScrollStorySection"));
 const AboutSection = lazy(() => import("@/components/sections/AboutSection"));
 const WhySection = lazy(() => import("@/components/sections/WhySection"));
 const SignatureSection = lazy(() => import("@/components/sections/SignatureSection"));
@@ -14,6 +15,7 @@ const JourneySection = lazy(() => import("@/components/sections/JourneySection")
 const LocationsSection = lazy(() => import("@/components/sections/LocationsSection"));
 const GallerySection = lazy(() => import("@/components/sections/GallerySection"));
 const TestimonialsSection = lazy(() => import("@/components/sections/TestimonialsSection"));
+const SocialSection = lazy(() => import("@/components/sections/SocialSection"));
 const ContactSection = lazy(() => import("@/components/sections/ContactSection"));
 const FooterSection = lazy(() => import("@/components/sections/FooterSection"));
 
