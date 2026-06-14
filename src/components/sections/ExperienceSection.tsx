@@ -2,16 +2,20 @@ import { useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import heroWaffle from "@/assets/hero-waffle.jpg";
+import expClassic from "@/assets/opt-0F0A9310.jpg";
+import expBubble from "@/assets/opt-0F0A9362.jpg";
+import expWich from "@/assets/opt-0F0A9375.jpg";
+import expPolar from "@/assets/opt-0F0A9404.jpg";
+import expSundae from "@/assets/opt-0F0A9406.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const waffleTypes = [
-  { name: "Classic Belgian", desc: "The original. Deep pockets, golden crust, timeless perfection.", image: heroWaffle },
-  { name: "Bubble Waffle", desc: "Crispy spheres that pop with flavour in every bite.", image: heroWaffle },
-  { name: "Waffy Wich", desc: "Sandwiched indulgence. Two waffles, infinite possibilities.", image: heroWaffle },
-  { name: "Polar Waffle", desc: "Cool, creamy & refreshing. A waffle experience like no other.", image: heroWaffle },
-  { name: "Bubble Sundae", desc: "Our signature sundae in a bubble waffle bowl.", image: heroWaffle },
+  { name: "Classic Belgian", desc: "The original. Deep pockets, golden crust, timeless perfection.", image: expClassic },
+  { name: "Bubble Waffle", desc: "Crispy spheres that pop with flavour in every bite.", image: expBubble },
+  { name: "Waffy Wich", desc: "Sandwiched indulgence. Two waffles, infinite possibilities.", image: expWich },
+  { name: "Polar Waffle", desc: "Cool, creamy & refreshing. A waffle experience like no other.", image: expPolar },
+  { name: "Bubble Sundae", desc: "Our signature sundae in a bubble waffle bowl.", image: expSundae },
 ];
 
 export default function ExperienceSection() {

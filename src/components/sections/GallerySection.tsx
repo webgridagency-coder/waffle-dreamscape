@@ -1,22 +1,18 @@
 import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import brownie from "@/assets/brownielicious.jpg";
-import blueberry from "@/assets/blueberry-wich.jpg";
-import almond from "@/assets/almond-sundae.jpg";
-import kitkat from "@/assets/kitkat-wich.jpg";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
+import gal1 from "@/assets/opt-one.jpg";
+import gal2 from "@/assets/opt-two.jpg";
+import gal3 from "@/assets/opt-three.jpg";
+import gal4 from "@/assets/opt-four.jpg";
+import gal5 from "@/assets/opt-five.jpg";
 
 const galleryImages = [
-  { src: gallery1, alt: "Chocolate drizzle on fresh waffle", span: "col-span-2 row-span-2" },
-  { src: gallery2, alt: "Students enjoying waffles at Just Waffles", span: "col-span-1 row-span-1" },
-  { src: gallery3, alt: "Premium Just Waffles store interior", span: "col-span-1 row-span-1" },
-  { src: almond, alt: "Almond Bubble Sundae", span: "col-span-1 row-span-2" },
-  { src: gallery4, alt: "Colorful bubble waffle toppings", span: "col-span-2 row-span-1" },
-  { src: brownie, alt: "Brownielicious Waffy Tree", span: "col-span-1 row-span-1" },
+  { src: gal1, alt: "Delicious freshly baked waffle", span: "col-span-2 row-span-2" },
+  { src: gal2, alt: "Just Waffles premium dining experience", span: "col-span-2 row-span-1" },
+  { src: gal3, alt: "Eggless golden bubble waffle", span: "col-span-1 row-span-1" },
+  { src: gal4, alt: "Signature waffle with gourmet chocolate drizzle", span: "col-span-1 row-span-1" },
+  { src: gal5, alt: "Deluxe waffle sundae with fresh toppings", span: "col-span-2 md:col-span-4 row-span-1" },
 ];
 
 export default function GallerySection() {
@@ -41,7 +37,7 @@ export default function GallerySection() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-3 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[250px]">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px] md:auto-rows-[250px]">
           {galleryImages.map((img, i) => (
             <motion.div
               key={i}

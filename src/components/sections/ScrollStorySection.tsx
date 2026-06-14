@@ -1,12 +1,17 @@
-import { useRef, useEffect } from "react";
-import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import imgFlour from "@/assets/opt-0F0A9281.jpg";
+import imgBatter from "@/assets/opt-0F0A9288.jpg";
+import imgPress from "@/assets/opt-0F0A9310.jpg";
+import imgDrizzle from "@/assets/opt-0F0A9362.jpg";
+import imgServe from "@/assets/opt-0F0A9279.jpg";
 
 const stages = [
-  { title: "Flour", subtitle: "Premium quality flour, sifted to perfection", color: "#e8d5b7" },
-  { title: "Batter", subtitle: "Freshly mixed, smooth as silk", color: "#f5e6d3" },
-  { title: "Press", subtitle: "Golden grids form in the hot iron", color: "#d4a574" },
-  { title: "Drizzle", subtitle: "Rich chocolate cascades over the warm surface", color: "#8B4513" },
-  { title: "Serve", subtitle: "Crafted fresh. Served warm. Enjoyed more.", color: "#FF7A00" },
+  { title: "Flour", subtitle: "Premium quality flour, sifted to perfection", color: "#e8d5b7", image: imgFlour },
+  { title: "Batter", subtitle: "Freshly mixed, smooth as silk", color: "#f5e6d3", image: imgBatter },
+  { title: "Press", subtitle: "Golden grids form in the hot iron", color: "#d4a574", image: imgPress },
+  { title: "Drizzle", subtitle: "Rich chocolate cascades over the warm surface", color: "#8B4513", image: imgDrizzle },
+  { title: "Serve", subtitle: "Crafted fresh. Served warm. Enjoyed more.", color: "#FF7A00", image: imgServe },
 ];
 
 export default function ScrollStorySection() {
@@ -19,42 +24,19 @@ export default function ScrollStorySection() {
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section ref={containerRef} className="relative" style={{ height: `${stages.length * 100}vh` }}>
+    <section id="experience" ref={containerRef} className="relative" style={{ height: `${stages.length * 100}vh` }}>
       {/* Sticky container */}
-      <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-        {/* Background gradient that shifts */}
-        <motion.div
-          className="absolute inset-0"
-          style={{
-            background: useTransform(
-              scrollYProgress,
-              [0, 0.2, 0.4, 0.6, 0.8, 1],
-              [
-                "radial-gradient(circle at center, rgba(232,213,183,0.05) 0%, transparent 70%)",
-                "radial-gradient(circle at center, rgba(245,230,211,0.05) 0%, transparent 70%)",
-                "radial-gradient(circle at center, rgba(212,165,116,0.08) 0%, transparent 70%)",
-                "radial-gradient(circle at center, rgba(139,69,19,0.08) 0%, transparent 70%)",
-                "radial-gradient(circle at center, rgba(255,122,0,0.1) 0%, transparent 70%)",
-                "radial-gradient(circle at center, rgba(255,122,0,0.1) 0%, transparent 70%)",
-              ]
-            ),
-          }}
-        />
-
-        {/* Progress bar at top */}
-        <div className="absolute top-0 left-0 right-0 h-1 bg-white/5">
-          <motion.div className="h-full bg-brand-orange" style={{ width: progressWidth }} />
-        </div>
-
-        {/* Stage content */}
-        <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden bg-black">
+        
+        {/* Full-Screen Background Images (Cross-fading) */}
+        <div className="absolute inset-0 z-0 w-full h-full">
           {stages.map((stage, i) => {
             const stageStart = i / stages.length;
             const stageEnd = (i + 1) / stages.length;
             const stageMid = (stageStart + stageEnd) / 2;
 
             return (
-              <StageContent
+              <StageImageContent
                 key={stage.title}
                 stage={stage}
                 index={i}
@@ -65,10 +47,47 @@ export default function ScrollStorySection() {
               />
             );
           })}
+          
+          {/* Immersive Dark Vignette Overlay for Premium Readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/45 to-black/80 z-10" />
+          <div 
+            className="absolute inset-0 z-10" 
+            style={{ 
+              backgroundImage: "radial-gradient(circle at center, transparent 20%, rgba(0,0,0,0.85) 100%)" 
+            }} 
+          />
         </div>
 
-        {/* Stage counter */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+        {/* Progress bar at top */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-white/5 z-30">
+          <motion.div className="h-full bg-brand-orange" style={{ width: progressWidth }} />
+        </div>
+
+        {/* Cinematic Centered Story Text */}
+        <div className="relative z-20 w-full max-w-4xl mx-auto px-6 h-[80vh] flex items-center justify-center">
+          <div className="relative w-full h-[50vh] flex items-center justify-center">
+            {stages.map((stage, i) => {
+              const stageStart = i / stages.length;
+              const stageEnd = (i + 1) / stages.length;
+              const stageMid = (stageStart + stageEnd) / 2;
+
+              return (
+                <StageTextContent
+                  key={stage.title}
+                  stage={stage}
+                  index={i}
+                  scrollYProgress={scrollYProgress}
+                  stageStart={stageStart}
+                  stageEnd={stageEnd}
+                  stageMid={stageMid}
+                />
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Stage counter / dots */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2.5 z-30">
           {stages.map((_, i) => (
             <motion.div
               key={i}
@@ -79,6 +98,11 @@ export default function ScrollStorySection() {
                   [i / stages.length, (i + 0.5) / stages.length],
                   ["rgba(255,255,255,0.2)", "#FF7A00"]
                 ),
+                scale: useTransform(
+                  scrollYProgress,
+                  [i / stages.length, (i + 0.5) / stages.length, (i + 1) / stages.length],
+                  [1, 1.25, 1]
+                ),
               }}
             />
           ))}
@@ -88,7 +112,7 @@ export default function ScrollStorySection() {
   );
 }
 
-function StageContent({
+function StageTextContent({
   stage,
   index,
   scrollYProgress,
@@ -112,47 +136,75 @@ function StageContent({
   const y = useTransform(
     scrollYProgress,
     [stageStart, stageStart + 0.1, stageEnd - 0.1, stageEnd],
-    [60, 0, 0, -60]
+    [40, 0, 0, -40]
   );
 
   const scale = useTransform(
     scrollYProgress,
     [stageStart, stageStart + 0.1, stageEnd - 0.1, stageEnd],
-    [0.9, 1, 1, 0.9]
+    [0.95, 1, 1, 0.95]
   );
 
   return (
     <motion.div
-      className="absolute inset-0 flex flex-col items-center justify-center"
+      className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none px-4"
       style={{ opacity, y, scale }}
     >
-      <motion.span
-        className="text-brand-orange font-mono text-xs uppercase tracking-[0.3em] mb-6 block"
-      >
+      <span className="text-brand-orange font-mono text-xs md:text-sm uppercase tracking-[0.4em] mb-4 block font-bold text-glow-orange">
         Stage {String(index + 1).padStart(2, "0")}
-      </motion.span>
+      </span>
       <h3
-        className="text-6xl md:text-8xl lg:text-9xl font-display font-bold mb-6"
+        className="text-5xl sm:text-6xl md:text-8xl font-display font-extrabold mb-6 tracking-wide drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
         style={{ color: stage.color }}
       >
         {stage.title}
       </h3>
-      <p className="text-zinc-400 text-lg md:text-xl max-w-md mx-auto leading-relaxed">
+      <p className="text-zinc-200 text-base sm:text-lg md:text-2xl max-w-xl leading-relaxed font-sans font-medium drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
         {stage.subtitle}
       </p>
+    </motion.div>
+  );
+}
 
-      {/* Animated icon for each stage */}
-      <motion.div
-        className="mt-10 w-24 h-24 rounded-full border border-white/10 flex items-center justify-center"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-      >
-        <div className="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center">
-          <span className="text-2xl font-display font-bold" style={{ color: stage.color }}>
-            {index + 1}
-          </span>
-        </div>
-      </motion.div>
+function StageImageContent({
+  stage,
+  index,
+  scrollYProgress,
+  stageStart,
+  stageEnd,
+  stageMid,
+}: {
+  stage: typeof stages[0];
+  index: number;
+  scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
+  stageStart: number;
+  stageEnd: number;
+  stageMid: number;
+}) {
+  const opacity = useTransform(
+    scrollYProgress,
+    [stageStart, stageStart + 0.08, stageMid, stageEnd - 0.08, stageEnd],
+    [0, 1, 1, 1, 0]
+  );
+
+  // Subtle zoom-out effect for a cinematic camera feel
+  const imgScale = useTransform(
+    scrollYProgress,
+    [stageStart, stageMid, stageEnd],
+    [1.12, 1.04, 1.0]
+  );
+
+  return (
+    <motion.div
+      className="absolute inset-0 w-full h-full pointer-events-none z-0"
+      style={{ opacity }}
+    >
+      <motion.img
+        src={stage.image}
+        alt={stage.title}
+        className="w-full h-full object-cover"
+        style={{ scale: imgScale }}
+      />
     </motion.div>
   );
 }

@@ -37,41 +37,18 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
 
           {/* Logo */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="relative mb-12"
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative mb-10 flex flex-col items-center"
           >
-            <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tighter text-white">
-              JUST<span className="text-brand-orange">WAFFLES</span>
-            </h1>
-            <motion.div
-              className="absolute -bottom-2 left-0 h-0.5 bg-brand-orange"
-              initial={{ width: 0 }}
-              animate={{ width: "100%" }}
-              transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+            {/* Soft glowing background behind the logo */}
+            <div className="absolute inset-0 bg-brand-orange/20 blur-2xl rounded-full scale-75 animate-pulse" />
+            <img
+              src="/logo.png"
+              alt="Just Waffles Logo"
+              className="relative z-10 w-44 h-44 md:w-56 md:h-56 object-contain drop-shadow-[0_0_40px_rgba(255,122,0,0.35)] animate-float"
             />
-          </motion.div>
-
-          {/* Animated waffle icon */}
-          <motion.div
-            className="w-20 h-20 mb-10 relative"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-          >
-            <svg viewBox="0 0 100 100" className="w-full h-full">
-              <rect x="15" y="15" width="70" height="70" rx="8" fill="none" stroke="url(#orangeGrad)" strokeWidth="2" />
-              <line x1="15" y1="38" x2="85" y2="38" stroke="url(#orangeGrad)" strokeWidth="1.5" opacity="0.6" />
-              <line x1="15" y1="62" x2="85" y2="62" stroke="url(#orangeGrad)" strokeWidth="1.5" opacity="0.6" />
-              <line x1="38" y1="15" x2="38" y2="85" stroke="url(#orangeGrad)" strokeWidth="1.5" opacity="0.6" />
-              <line x1="62" y1="15" x2="62" y2="85" stroke="url(#orangeGrad)" strokeWidth="1.5" opacity="0.6" />
-              <defs>
-                <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#FF7A00" />
-                  <stop offset="100%" stopColor="#4CC7C1" />
-                </linearGradient>
-              </defs>
-            </svg>
           </motion.div>
 
           {/* Tagline */}

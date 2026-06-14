@@ -6,8 +6,8 @@ const navLinks = [
   { label: "Experience", href: "#experience" },
   { label: "Menu", href: "#menu" },
   { label: "Journey", href: "#journey" },
+  { label: "Team", href: "#team" },
   { label: "Locations", href: "#locations" },
-  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navigation() {
@@ -40,8 +40,22 @@ export default function Navigation() {
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           {/* Logo */}
-          <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }} className="text-xl font-semibold tracking-tight text-white font-display">
-            JUST <span className="text-brand-orange">WAFFLES</span>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            className="flex items-center gap-3 text-xl font-semibold tracking-tight text-white font-display"
+          >
+            <img
+              src="/logo.png"
+              alt="Just Waffles"
+              className="h-16 w-16 md:h-20 md:w-20 object-contain"
+            />
+            <span className="hidden sm:inline">
+              JUST <span className="text-brand-orange">WAFFLES</span>
+            </span>
           </a>
 
           {/* Desktop links */}
@@ -56,12 +70,14 @@ export default function Navigation() {
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-brand-orange group-hover:w-full transition-all duration-300" />
               </button>
             ))}
-            <button
-              onClick={() => handleClick("#contact")}
-              className="bg-brand-orange text-white px-5 py-2 rounded-full text-sm font-medium ring-1 ring-brand-orange ring-offset-2 ring-offset-luxury-black transition-transform hover:scale-105 active:scale-95"
+            <a
+              href="https://wa.me/919980773895"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-brand-orange text-white px-5 py-2 rounded-full text-sm font-medium ring-1 ring-brand-orange ring-offset-2 ring-offset-luxury-black transition-transform hover:scale-105 active:scale-95 flex items-center justify-center"
             >
-              Order Now
-            </button>
+              Book Now
+            </a>
           </div>
 
           {/* Mobile toggle */}
@@ -95,15 +111,18 @@ export default function Navigation() {
                 {link.label}
               </motion.button>
             ))}
-            <motion.button
-              onClick={() => handleClick("#contact")}
-              className="mt-4 bg-brand-orange text-white px-8 py-3 rounded-full text-lg font-medium"
+            <motion.a
+              href="https://wa.me/919980773895"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
+              className="mt-4 bg-brand-orange text-white px-8 py-3 rounded-full text-lg font-medium inline-flex items-center justify-center"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
             >
-              Order Now
-            </motion.button>
+              Book Now
+            </motion.a>
           </motion.div>
         )}
       </AnimatePresence>

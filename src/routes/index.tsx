@@ -1,22 +1,18 @@
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, lazy, Suspense } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import Lenis from "lenis";
 import LoadingScreen from "@/components/LoadingScreen";
 import ParticleBackground from "@/components/ParticleBackground";
 import Navigation from "@/components/Navigation";
 
 const HeroSection = lazy(() => import("@/components/sections/HeroSection"));
+const StatsSection = lazy(() => import("@/components/sections/StatsSection"));
 const ScrollStorySection = lazy(() => import("@/components/sections/ScrollStorySection"));
-const AboutSection = lazy(() => import("@/components/sections/AboutSection"));
-const WhySection = lazy(() => import("@/components/sections/WhySection"));
 const SignatureSection = lazy(() => import("@/components/sections/SignatureSection"));
-const ExperienceSection = lazy(() => import("@/components/sections/ExperienceSection"));
 const JourneySection = lazy(() => import("@/components/sections/JourneySection"));
+const TeamSection = lazy(() => import("@/components/sections/TeamSection"));
 const LocationsSection = lazy(() => import("@/components/sections/LocationsSection"));
-const GallerySection = lazy(() => import("@/components/sections/GallerySection"));
 const TestimonialsSection = lazy(() => import("@/components/sections/TestimonialsSection"));
-const SocialSection = lazy(() => import("@/components/sections/SocialSection"));
-const ContactSection = lazy(() => import("@/components/sections/ContactSection"));
+const GallerySection = lazy(() => import("@/components/sections/GallerySection"));
 const FooterSection = lazy(() => import("@/components/sections/FooterSection"));
 
 export const Route = createFileRoute("/")({
@@ -40,28 +36,6 @@ export const Route = createFileRoute("/")({
 function Index() {
   const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    if (!loaded) return;
-
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: "vertical",
-      gestureOrientation: "vertical",
-      smoothWheel: true,
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
-  }, [loaded]);
-
   return (
     <>
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
@@ -73,17 +47,14 @@ function Index() {
           <Suspense fallback={<div className="min-h-screen bg-luxury-black" />}>
             <main>
               <HeroSection />
+              <StatsSection />
               <ScrollStorySection />
-              <AboutSection />
-              <WhySection />
               <SignatureSection />
-              <ExperienceSection />
               <JourneySection />
+              <TeamSection />
               <LocationsSection />
-              <GallerySection />
               <TestimonialsSection />
-              <SocialSection />
-              <ContactSection />
+              <GallerySection />
               <FooterSection />
             </main>
           </Suspense>
