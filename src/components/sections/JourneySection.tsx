@@ -3,12 +3,42 @@ import { motion, useInView } from "framer-motion";
 import { Sparkles, MapPin, Award, Bookmark, ShieldCheck, Heart } from "lucide-react";
 
 const milestones = [
-  { month: "July 2024", title: "The Genesis", desc: "Just Waffles is born in Bengaluru, reimagining the gourmet dessert landscape.", icon: Sparkles },
-  { month: "August 2024", title: "Boutique Expansion", desc: "Opening of boutique doors in Kammanahalli, Vidyaranyapura, and Kothanur.", icon: MapPin },
-  { month: "September 2024", title: "Excellence Applauded", desc: "Acquiring a solid 4.8★ consumer score, praised for pure eggless recipe crafts.", icon: Award },
-  { month: "October 2024", title: "Campus Chapters", desc: "Partnering with elite institutions to cater artisanal treats for college occasions.", icon: Bookmark },
-  { month: "November 2024", title: "Festival Spotlights", desc: "Showcasing signature waffle wedges at Bengaluru's premier culinary events.", icon: ShieldCheck },
-  { month: "December 2024", title: "The Waffle Tribe", desc: "Nurturing a growing community of connoisseurs who seek dessert sophistication.", icon: Heart },
+  {
+    month: "July 2024",
+    title: "The Genesis",
+    desc: "Just Waffles is born in Bengaluru, reimagining the gourmet dessert landscape.",
+    icon: Sparkles,
+  },
+  {
+    month: "August 2024",
+    title: "Boutique Expansion",
+    desc: "Opening of boutique doors in Kammanahalli, Vidyaranyapura, and Kothanur.",
+    icon: MapPin,
+  },
+  {
+    month: "September 2024",
+    title: "Excellence Applauded",
+    desc: "Acquiring a solid 4.8★ consumer score, praised for pure eggless recipe crafts.",
+    icon: Award,
+  },
+  {
+    month: "October 2024",
+    title: "Campus Chapters",
+    desc: "Partnering with elite institutions to cater artisanal treats for college occasions.",
+    icon: Bookmark,
+  },
+  {
+    month: "November 2024",
+    title: "Festival Spotlights",
+    desc: "Showcasing signature waffle wedges at Bengaluru's premier culinary events.",
+    icon: ShieldCheck,
+  },
+  {
+    month: "December 2024",
+    title: "The Waffle Tribe",
+    desc: "Nurturing a growing community of connoisseurs who seek dessert sophistication.",
+    icon: Heart,
+  },
 ];
 
 export default function JourneySection() {
@@ -16,9 +46,12 @@ export default function JourneySection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="journey" className="relative bg-bg-secondary py-36 px-8 md:px-12 overflow-hidden z-20 border-b border-border" ref={ref}>
+    <section
+      id="journey"
+      className="relative bg-bg-secondary py-36 px-8 md:px-12 overflow-hidden z-20 border-b border-border"
+      ref={ref}
+    >
       <div className="max-w-4xl mx-auto">
-        
         {/* Section Header */}
         <div className="text-center mb-28">
           <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
@@ -51,9 +84,10 @@ export default function JourneySection() {
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: 0.15 + i * 0.1, duration: 0.8 }}
                 >
-                  
                   {/* Content Block */}
-                  <div className={`w-full md:w-1/2 pl-16 md:pl-0 ${isLeft ? "md:text-right md:pr-12" : "md:text-left md:pl-12"}`}>
+                  <div
+                    className={`w-full md:w-1/2 pl-16 md:pl-0 ${isLeft ? "md:text-right md:pr-12" : "md:text-left md:pl-12"}`}
+                  >
                     <span className="text-xs font-mono font-semibold tracking-widest text-brand-teal uppercase mb-2 block">
                       {milestone.month}
                     </span>
@@ -77,7 +111,6 @@ export default function JourneySection() {
             })}
           </div>
         </div>
-
       </div>
     </section>
   );

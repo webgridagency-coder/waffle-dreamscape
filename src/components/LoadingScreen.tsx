@@ -6,20 +6,36 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    // 1. Block scrolling on body while loading screen is active
+    document.body.style.overflow = "hidden";
+
+    // 2. Set up smooth fast progress increments
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
           setTimeout(() => {
             setVisible(false);
-            setTimeout(onComplete, 800);
-          }, 400);
+            setTimeout(onComplete, 800); // Waits for the 0.8s Framer Motion exit animation
+          }, 200); // Reduced delay before starting fade-out from 400ms to 200ms
           return 100;
         }
-        return prev + Math.random() * 20 + 8;
+
+        // If page assets are already fully loaded, accelerate loading bar progress
+        const isPageLoaded = typeof document !== "undefined" && document.readyState === "complete";
+        const increment = isPageLoaded
+          ? Math.random() * 25 + 15 // Fast load: increments of 15% - 40%
+          : Math.random() * 12 + 6; // Standard load: increments of 6% - 18%
+
+        return prev + increment;
       });
-    }, 80);
-    return () => clearInterval(interval);
+    }, 45); // Faster tick rate (45ms instead of 80ms)
+
+    return () => {
+      // 3. Restore scrolling when unmounted
+      document.body.style.overflow = "";
+      clearInterval(interval);
+    };
   }, [onComplete]);
 
   return (
@@ -49,7 +65,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
             >
               JUST <span className="font-light text-brand-orange">WAFFLES</span>
             </motion.h1>
-            
+
             <motion.p
               className="text-[10px] font-sans font-medium uppercase tracking-[0.4em] text-text-secondary mt-3"
               initial={{ opacity: 0 }}
@@ -69,7 +85,7 @@ export default function LoadingScreen({ onComplete }: { onComplete: () => void }
               transition={{ duration: 0.2, ease: "easeOut" }}
             />
           </div>
-          
+
           <p className="text-[10px] font-mono tracking-widest text-text-muted mt-3 uppercase">
             {Math.min(Math.round(progress), 100)}%
           </p>

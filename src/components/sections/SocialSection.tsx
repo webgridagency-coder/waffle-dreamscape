@@ -62,7 +62,8 @@ export default function SocialSection() {
             Share Your <span className="text-brand-orange">Waffle Story</span>
           </h3>
           <p className="text-zinc-400 mb-8 max-w-md mx-auto">
-            Every waffle has a story. Share yours with #JustWaffles and #EnjoyMore for a chance to be featured.
+            Every waffle has a story. Share yours with #JustWaffles and #EnjoyMore for a chance to
+            be featured.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

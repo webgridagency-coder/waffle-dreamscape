@@ -46,12 +46,11 @@ export default function TestimonialsSection() {
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="bg-bg-secondary py-36 px-8 md:px-12 z-20 border-b border-border"
     >
       <div className="max-w-7xl mx-auto">
-        
         {/* Section Header */}
         <div className="text-center mb-28">
           <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
@@ -80,7 +79,10 @@ export default function TestimonialsSection() {
                 <Quote className="w-4 h-4 text-brand-teal stroke-[1.2]" />
                 <div className="flex gap-0.5">
                   {[...Array(item.rating)].map((_, starIdx) => (
-                    <Star key={starIdx} className="w-3.5 h-3.5 fill-brand-orange text-brand-orange" />
+                    <Star
+                      key={starIdx}
+                      className="w-3.5 h-3.5 fill-brand-orange text-brand-orange"
+                    />
                   ))}
                 </div>
               </div>
@@ -108,10 +110,7 @@ export default function TestimonialsSection() {
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );
 }
-
-

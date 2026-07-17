@@ -12,8 +12,6 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import Lenis from "lenis";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function NotFoundComponent() {
   return (
@@ -81,10 +79,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Just Waffles | Enjoy More — Bengaluru's Premium Waffle Experience" },
-      { name: "description", content: "Bengaluru's most loved premium eggless waffle destination. Belgian Waffles, Bubble Waffles, Waffy Wich & more. Crafted fresh, served warm, enjoyed more." },
+      {
+        name: "description",
+        content:
+          "Bengaluru's most loved premium eggless waffle destination. Belgian Waffles, Bubble Waffles, Waffy Wich & more. Crafted fresh, served warm, enjoyed more.",
+      },
       { name: "author", content: "Just Waffles" },
       { property: "og:title", content: "Just Waffles | Enjoy More" },
-      { property: "og:description", content: "Bengaluru's most loved premium eggless waffle destination." },
+      {
+        property: "og:description",
+        content: "Bengaluru's most loved premium eggless waffle destination.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@justwaffles" },
@@ -95,7 +100,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -122,10 +130,26 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   useEffect(() => {
-    // Register GSAP ScrollTrigger
-    gsap.registerPlugin(ScrollTrigger);
+    // 1. Generate high-performance GPU-cached noise texture once on mount
+    const canvas = document.createElement("canvas");
+    canvas.width = 128;
+    canvas.height = 128;
+    const ctx = canvas.getContext("2d");
+    if (ctx) {
+      const imgData = ctx.createImageData(128, 128);
+      for (let i = 0; i < imgData.data.length; i += 4) {
+        const val = Math.floor(Math.random() * 255);
+        imgData.data[i] = val;
+        imgData.data[i + 1] = val;
+        imgData.data[i + 2] = val;
+        imgData.data[i + 3] = 8; // Subtle 3% opacity noise overlay
+      }
+      ctx.putImageData(imgData, 0, 0);
+      const noiseDataUrl = canvas.toDataURL();
+      document.documentElement.style.setProperty("--noise-url", `url(${noiseDataUrl})`);
+    }
 
-    // Initialize Lenis smooth scroll
+    // 2. Initialize Lenis smooth scroll (without GSAP ScrollTrigger overhead)
     const lenis = new Lenis({
       duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -136,9 +160,6 @@ function RootComponent() {
       touchMultiplier: 1.5,
     });
 
-    // Update ScrollTrigger on scroll
-    lenis.on("scroll", ScrollTrigger.update);
-
     // Native requestAnimationFrame loop for native animation budget sync
     let rafId: number;
     function raf(time: number) {
@@ -146,9 +167,6 @@ function RootComponent() {
       rafId = requestAnimationFrame(raf);
     }
     rafId = requestAnimationFrame(raf);
-
-    // Optimize GSAP lagSmoothing
-    gsap.ticker.lagSmoothing(0);
 
     return () => {
       cancelAnimationFrame(rafId);

@@ -38,12 +38,12 @@ export default function HeroSection() {
   const yTranslate = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative h-screen w-full flex items-center bg-[#2B1A12] overflow-hidden z-20"
     >
       {/* 8K Cinematic Background Image Container */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none"
         style={{ scale, y: yTranslate }}
       >
@@ -56,18 +56,18 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Subtle Gradient Overlay for Text Readability */}
-      <div 
+      <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
-          background: "linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0.10) 75%, transparent 100%)"
+          background:
+            "linear-gradient(90deg, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.35) 45%, rgba(0, 0, 0, 0.10) 75%, transparent 100%)",
         }}
       />
 
       <div className="w-full max-w-7xl mx-auto px-8 md:px-12 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
           {/* Left Column (Luxury Content Box) */}
-          <motion.div 
+          <motion.div
             className="lg:col-span-7 flex flex-col justify-center text-left max-w-[620px]"
             variants={containerVariants}
             initial="hidden"
@@ -89,7 +89,10 @@ export default function HeroSection() {
               <motion.span className="block" variants={fadeUpVariants}>
                 Every Waffle
               </motion.span>
-              <motion.span className="block font-serif italic text-brand-teal" variants={fadeUpVariants}>
+              <motion.span
+                className="block font-serif italic text-brand-teal"
+                variants={fadeUpVariants}
+              >
                 Becomes Art.
               </motion.span>
             </h1>
@@ -99,19 +102,18 @@ export default function HeroSection() {
               className="text-[14px] sm:text-[15px] leading-relaxed text-[#FCFBF8]/80 font-sans font-light mb-10"
               variants={fadeUpVariants}
             >
-              Handcrafted eggless waffles prepared with carefully selected
-              ingredients, premium chocolate and artisanal techniques that
-              transform every bite into an unforgettable experience.
+              Handcrafted eggless waffles prepared with carefully selected ingredients, premium
+              chocolate and artisanal techniques that transform every bite into an unforgettable
+              experience.
             </motion.p>
 
             {/* Buttons (strictly 56px height, 8px radius) */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4"
-              variants={fadeUpVariants}
-            >
+            <motion.div className="flex flex-col sm:flex-row gap-4" variants={fadeUpVariants}>
               <button
                 onClick={() => {
-                  document.querySelector("#signature")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  document
+                    .querySelector("#signature")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
                 className="h-14 px-8 bg-brand-orange text-white text-xs uppercase tracking-widest font-semibold transition-all duration-300 hover:bg-brand-orange-hover rounded-[8px] cursor-pointer"
               >
@@ -120,7 +122,9 @@ export default function HeroSection() {
 
               <button
                 onClick={() => {
-                  document.querySelector("#locations")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                  document
+                    .querySelector("#locations")
+                    ?.scrollIntoView({ behavior: "smooth", block: "start" });
                 }}
                 className="h-14 px-8 bg-transparent text-white border border-white text-xs uppercase tracking-widest font-semibold transition-all duration-300 hover:bg-white hover:text-brown-900 rounded-[8px] cursor-pointer"
               >
@@ -128,7 +132,6 @@ export default function HeroSection() {
               </button>
             </motion.div>
           </motion.div>
-
         </div>
       </div>
 
@@ -138,7 +141,7 @@ export default function HeroSection() {
           Scroll
         </span>
         <div className="w-[1.5px] h-12 bg-white/20 relative overflow-hidden rounded-full">
-          <motion.div 
+          <motion.div
             className="absolute top-0 left-0 right-0 h-4 bg-brand-teal rounded-full"
             animate={{
               y: [0, 32, 0],

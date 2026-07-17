@@ -30,27 +30,22 @@ export default function FooterSection() {
   return (
     <footer className="relative bg-bg-primary pt-28 pb-12 px-8 md:px-12 z-20 border-t border-border">
       <div className="max-w-7xl mx-auto">
-        
         {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-16 mb-24">
-          
           {/* Column 1: Brand Info */}
           <div className="lg:col-span-4 flex flex-col items-start">
             <div className="flex items-center gap-3 mb-4">
-              <img
-                src="/logo.png"
-                alt="Just Waffles Logo"
-                className="h-10 w-10 object-contain"
-              />
+              <img src="/logo.png" alt="Just Waffles Logo" className="h-10 w-10 object-contain" />
               <h3 className="text-xl font-display font-medium tracking-[0.15em] text-brown-900">
                 JUST <span className="font-light text-brand-orange">WAFFLES</span>
               </h3>
             </div>
-            
+
             <p className="text-[13px] leading-relaxed text-text-secondary font-sans font-light max-w-xs mb-8">
-              Bengaluru's premier dessert brand crafting gourmet eggless waffles. Prepared fresh off the iron with pure ingredients and absolute precision.
+              Bengaluru's premier dessert brand crafting gourmet eggless waffles. Prepared fresh off
+              the iron with pure ingredients and absolute precision.
             </p>
-            
+
             {/* Social Icons (Outline) */}
             <div className="flex gap-4">
               <a
@@ -143,9 +138,7 @@ export default function FooterSection() {
                 <br />
                 Kammanahalli, Bengaluru, 560084
               </p>
-              <p className="text-[11px] text-text-muted mt-2">
-                Open Daily: 11:00 AM – 12:00 AM
-              </p>
+              <p className="text-[11px] text-text-muted mt-2">Open Daily: 11:00 AM – 12:00 AM</p>
             </div>
           </div>
 
@@ -155,9 +148,10 @@ export default function FooterSection() {
               Waffle Society
             </h4>
             <p className="text-[12px] leading-relaxed text-text-secondary font-sans font-light mb-6 text-left">
-              Subscribe to receive private invitations, menu releases, and seasonal flavor highlights.
+              Subscribe to receive private invitations, menu releases, and seasonal flavor
+              highlights.
             </p>
-            
+
             <form onSubmit={handleSubscribe} className="w-full relative flex flex-col gap-2">
               <div className="relative w-full flex items-center">
                 <input
@@ -178,7 +172,7 @@ export default function FooterSection() {
                   {subscribed ? <Check className="w-4 h-4" /> : <Send className="w-3.5 h-3.5" />}
                 </button>
               </div>
-              
+
               <AnimatePresence>
                 {subscribed && (
                   <motion.p
@@ -193,7 +187,6 @@ export default function FooterSection() {
               </AnimatePresence>
             </form>
           </div>
-
         </div>
 
         {/* Bottom Bar */}
@@ -201,7 +194,7 @@ export default function FooterSection() {
           <p className="text-[11px] font-mono text-text-muted tracking-wider">
             © 2024 Just Waffles. All rights reserved. Designed for dessert purists.
           </p>
-          
+
           <button
             onClick={scrollToTop}
             className="w-10 h-10 border border-border hover:border-brown-700 flex items-center justify-center rounded-full hover:bg-bg-secondary transition-all text-brown-900 cursor-pointer"
@@ -210,7 +203,6 @@ export default function FooterSection() {
             <ArrowUp className="w-4 h-4 stroke-[1.2]" />
           </button>
         </div>
-
       </div>
     </footer>
   );

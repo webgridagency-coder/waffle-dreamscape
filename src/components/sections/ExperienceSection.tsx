@@ -57,13 +57,12 @@ export default function ExperienceSection() {
   const pathLength = useTransform(scrollYProgress, [0, 0.95], [0, 1]);
 
   return (
-    <section 
-      id="experience" 
-      ref={containerRef} 
+    <section
+      id="experience"
+      ref={containerRef}
       className="relative bg-bg-secondary py-36 px-8 md:px-12 overflow-hidden z-20 border-b border-border"
     >
       <div className="max-w-6xl mx-auto relative z-10">
-        
         {/* Section Header */}
         <div className="text-center mb-28">
           <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
@@ -79,11 +78,10 @@ export default function ExperienceSection() {
 
         {/* Staggered Vertical Process Steps */}
         <div className="relative">
-          
           {/* Animated Connecting Line */}
           <div className="absolute left-[30px] md:left-1/2 top-4 bottom-4 w-[1px] bg-border md:-translate-x-[0.5px] z-0">
-            <motion.div 
-              className="w-full bg-brand-teal origin-top" 
+            <motion.div
+              className="w-full bg-brand-teal origin-top"
               style={{ height: "100%", scaleY: pathLength }}
             />
           </div>
@@ -93,20 +91,19 @@ export default function ExperienceSection() {
               const isEven = i % 2 === 1;
               const Icon = step.icon;
               return (
-                <div 
+                <div
                   key={step.number}
                   className={`relative flex flex-col md:flex-row items-center gap-12 md:gap-20 ${
                     isEven ? "md:flex-row-reverse" : ""
                   }`}
                 >
-                  
                   {/* Step Icon Badge */}
                   <div className="absolute left-[30px] md:left-1/2 top-6 -translate-x-1/2 z-20 flex items-center justify-center w-12 h-12 rounded-full border border-border bg-surface shadow-sm">
                     <Icon className="w-4 h-4 text-brand-teal stroke-[1.2]" />
                   </div>
 
                   {/* Photo Side */}
-                  <motion.div 
+                  <motion.div
                     className="w-full md:w-1/2 flex justify-center z-10 pl-16 md:pl-0"
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -124,7 +121,7 @@ export default function ExperienceSection() {
                   </motion.div>
 
                   {/* Content Side */}
-                  <motion.div 
+                  <motion.div
                     className="w-full md:w-1/2 flex flex-col justify-center text-left pl-16 md:pl-0"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -143,14 +140,11 @@ export default function ExperienceSection() {
                       </p>
                     </div>
                   </motion.div>
-
                 </div>
               );
             })}
           </div>
-
         </div>
-
       </div>
     </section>
   );

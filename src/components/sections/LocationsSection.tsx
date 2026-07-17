@@ -6,7 +6,8 @@ const locations = [
   {
     id: "kammanahalli",
     name: "Kammanahalli Boutique",
-    address: "No.1188, Ground Floor, 1st Cross, Ramamurthy St, Keerthi Layout, St Thomas Town Post, Kammanahalli, Bengaluru, Karnataka 560084",
+    address:
+      "No.1188, Ground Floor, 1st Cross, Ramamurthy St, Keerthi Layout, St Thomas Town Post, Kammanahalli, Bengaluru, Karnataka 560084",
     phone: "9980773895",
     timing: "11:00 AM – 12:00 AM",
   },
@@ -39,9 +40,12 @@ export default function LocationsSection() {
   const [activeLoc, setActiveLoc] = useState(locations[0]);
 
   return (
-    <section id="locations" className="relative bg-bg-secondary py-36 px-8 md:px-12 overflow-hidden z-20 border-b border-border" ref={ref}>
+    <section
+      id="locations"
+      className="relative bg-bg-secondary py-36 px-8 md:px-12 overflow-hidden z-20 border-b border-border"
+      ref={ref}
+    >
       <div className="max-w-7xl mx-auto">
-        
         {/* Section Header */}
         <div className="text-center mb-28">
           <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
@@ -57,7 +61,6 @@ export default function LocationsSection() {
 
         {/* Map Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch">
-          
           {/* Left Column: Minimal Store Cards */}
           <div className="lg:col-span-5 flex flex-col gap-4 order-2 lg:order-1">
             {locations.map((loc, i) => {
@@ -66,9 +69,7 @@ export default function LocationsSection() {
                 <motion.div
                   key={loc.id}
                   className={`p-6 md:p-8 cursor-pointer border rounded-[8px] transition-all duration-500 bg-surface flex flex-col justify-between shadow-sm ${
-                    isActive
-                      ? "border-brand-orange"
-                      : "border-border hover:border-brown-700"
+                    isActive ? "border-brand-orange" : "border-border hover:border-brown-700"
                   }`}
                   onClick={() => setActiveLoc(loc)}
                   initial={{ opacity: 0, x: -20 }}
@@ -76,15 +77,23 @@ export default function LocationsSection() {
                   transition={{ delay: i * 0.08, duration: 0.8 }}
                 >
                   <div className="flex items-start gap-4">
-                    <div className={`w-8 h-8 flex items-center justify-center flex-shrink-0 border rounded-full transition-colors ${
-                      isActive ? "border-brand-orange text-brand-orange" : "border-border text-brand-teal"
-                    }`}>
+                    <div
+                      className={`w-8 h-8 flex items-center justify-center flex-shrink-0 border rounded-full transition-colors ${
+                        isActive
+                          ? "border-brand-orange text-brand-orange"
+                          : "border-border text-brand-teal"
+                      }`}
+                    >
                       <MapPin className="w-3.5 h-3.5 stroke-[1.2]" />
                     </div>
-                    
+
                     <div className="text-left">
-                      <h3 className="text-lg font-display font-light text-brown-900 mb-2">{loc.name}</h3>
-                      <p className="text-[12px] leading-relaxed text-text-secondary font-light font-sans max-w-sm">{loc.address}</p>
+                      <h3 className="text-lg font-display font-light text-brown-900 mb-2">
+                        {loc.name}
+                      </h3>
+                      <p className="text-[12px] leading-relaxed text-text-secondary font-light font-sans max-w-sm">
+                        {loc.address}
+                      </p>
                     </div>
                   </div>
 
@@ -139,13 +148,15 @@ export default function LocationsSection() {
                     <div className="flex-1 text-left">
                       <div className="flex items-center gap-2 mb-1.5">
                         <span className="w-1.5 h-1.5 rounded-full bg-brand-orange animate-pulse" />
-                        <h4 className="text-sm font-sans font-semibold text-brown-900 uppercase tracking-wider">{activeLoc.name}</h4>
+                        <h4 className="text-sm font-sans font-semibold text-brown-900 uppercase tracking-wider">
+                          {activeLoc.name}
+                        </h4>
                       </div>
                       <p className="text-[11px] leading-normal text-text-secondary max-w-sm font-sans font-light">
                         {activeLoc.address}
                       </p>
                     </div>
-                    
+
                     <div className="flex items-center gap-2">
                       <a
                         href={`tel:+91${activeLoc.phone}`}
@@ -169,11 +180,8 @@ export default function LocationsSection() {
               </div>
             </motion.div>
           </div>
-
         </div>
       </div>
     </section>
   );
 }
-
-

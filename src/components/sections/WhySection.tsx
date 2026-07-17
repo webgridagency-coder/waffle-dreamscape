@@ -74,9 +74,13 @@ export default function WhySection() {
               transition={{ delay: 0.2 + i * 0.1, duration: 0.6 }}
             >
               <GlowCard glowColor={reason.color} className="h-full">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${
-                  reason.color === "orange" ? "bg-brand-orange/20 text-brand-orange" : "bg-brand-turquoise/20 text-brand-turquoise"
-                }`}>
+                <div
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${
+                    reason.color === "orange"
+                      ? "bg-brand-orange/20 text-brand-orange"
+                      : "bg-brand-turquoise/20 text-brand-turquoise"
+                  }`}
+                >
                   <reason.icon className="w-5 h-5" />
                 </div>
                 <h3 className="text-xl font-display font-bold text-white mb-3">{reason.title}</h3>

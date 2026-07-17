@@ -30,9 +30,12 @@ export default function TeamSection() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="team" className="relative bg-bg-primary py-36 px-8 md:px-12 overflow-hidden z-20 border-b border-border" ref={ref}>
+    <section
+      id="team"
+      className="relative bg-bg-primary py-36 px-8 md:px-12 overflow-hidden z-20 border-b border-border"
+      ref={ref}
+    >
       <div className="max-w-7xl mx-auto">
-        
         {/* Section Header */}
         <div className="text-center mb-28">
           <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
@@ -70,21 +73,18 @@ export default function TeamSection() {
               <span className="text-[10px] font-sans font-bold tracking-widest text-brand-teal uppercase mb-1.5">
                 {member.role}
               </span>
-              
+
               <h3 className="text-xl md:text-2xl font-display font-light text-brown-900 mb-4 tracking-tight">
                 {member.name}
               </h3>
-              
+
               <p className="text-[13px] leading-relaxed text-text-secondary font-sans font-light">
                 {member.desc}
               </p>
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );
 }
-
-

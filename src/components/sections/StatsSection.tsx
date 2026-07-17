@@ -34,7 +34,7 @@ export default function StatsSection() {
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative bg-bg-primary py-16 px-8 md:px-12 z-20 border-y border-border"
     >
@@ -56,7 +56,7 @@ export default function StatsSection() {
                   </span>
                   <Icon className="w-5 h-5 text-brand-teal stroke-[1.2]" />
                 </div>
-                
+
                 <div>
                   <h3 className="text-4xl lg:text-5xl font-display font-light text-brown-900 mb-3 tracking-tight">
                     {stat.value}

@@ -8,11 +8,31 @@ import gal4 from "@/assets/opt-four.jpg";
 import gal5 from "@/assets/opt-five.jpg";
 
 const galleryImages = [
-  { src: gal1, alt: "Gourmet eggless Belgian waffle plate", className: "col-span-12 md:col-span-7 aspect-[16/10] md:aspect-[3/2]" },
-  { src: gal2, alt: "Delicate cocoa ganache detail work", className: "col-span-12 md:col-span-5 aspect-[4/5] md:mt-20" },
-  { src: gal3, alt: "The bubble waffle golden iron press", className: "col-span-12 md:col-span-4 aspect-[4/5]" },
-  { src: gal4, alt: "Signature waffle wedges with wild toppings", className: "col-span-12 md:col-span-8 aspect-[16/10] md:aspect-[3/2]" },
-  { src: gal5, alt: "The curated patisserie plating", className: "col-span-12 aspect-[21/9] md:aspect-[3/1]" },
+  {
+    src: gal1,
+    alt: "Gourmet eggless Belgian waffle plate",
+    className: "col-span-12 md:col-span-7 aspect-[16/10] md:aspect-[3/2]",
+  },
+  {
+    src: gal2,
+    alt: "Delicate cocoa ganache detail work",
+    className: "col-span-12 md:col-span-5 aspect-[4/5] md:mt-20",
+  },
+  {
+    src: gal3,
+    alt: "The bubble waffle golden iron press",
+    className: "col-span-12 md:col-span-4 aspect-[4/5]",
+  },
+  {
+    src: gal4,
+    alt: "Signature waffle wedges with wild toppings",
+    className: "col-span-12 md:col-span-8 aspect-[16/10] md:aspect-[3/2]",
+  },
+  {
+    src: gal5,
+    alt: "The curated patisserie plating",
+    className: "col-span-12 aspect-[21/9] md:aspect-[3/1]",
+  },
 ];
 
 export default function GallerySection() {
@@ -20,9 +40,11 @@ export default function GallerySection() {
   const [lightbox, setLightbox] = useState<string | null>(null);
 
   return (
-    <section className="bg-bg-primary py-36 px-8 md:px-12 z-20 border-b border-border" ref={containerRef}>
+    <section
+      className="bg-bg-primary py-36 px-8 md:px-12 z-20 border-b border-border"
+      ref={containerRef}
+    >
       <div className="max-w-7xl mx-auto">
-        
         {/* Section Header */}
         <div className="text-center mb-28">
           <span className="text-[10px] font-sans font-semibold uppercase tracking-[0.4em] text-brand-teal mb-4 block">
@@ -56,7 +78,7 @@ export default function GallerySection() {
                   loading="lazy"
                 />
               </div>
-              
+
               {/* Overlay visual reveal on hover */}
               <div className="absolute inset-2 bg-brown-900/10 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center rounded-[6px]">
                 <div className="w-12 h-12 border border-border bg-surface/90 flex items-center justify-center rounded-full shadow-sm text-brand-teal">
@@ -85,7 +107,7 @@ export default function GallerySection() {
             >
               <X className="w-4 h-4 stroke-[1.2]" />
             </button>
-            
+
             <motion.div
               className="max-w-5xl w-full max-h-[80vh] border border-border bg-bg-secondary p-2 shadow-lg rounded-[8px]"
               initial={{ scale: 0.98, opacity: 0 }}

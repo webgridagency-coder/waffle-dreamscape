@@ -8,7 +8,10 @@ import heroWaffle from "@/assets/opt-0F0A9353.jpg";
 function isWebGLAvailable() {
   try {
     const canvas = document.createElement("canvas");
-    return !!(window.WebGLRenderingContext && (canvas.getContext("webgl") || canvas.getContext("experimental-webgl")));
+    return !!(
+      window.WebGLRenderingContext &&
+      (canvas.getContext("webgl") || canvas.getContext("experimental-webgl"))
+    );
   } catch (e) {
     return false;
   }
@@ -102,12 +105,20 @@ function WaffleScene({ mousePosRef }: { mousePosRef: React.RefObject<{ x: number
     if (mainGroup.current) {
       mainGroup.current.position.y = Math.sin(t * 0.3) * 0.08;
       mainGroup.current.position.x = Math.cos(t * 0.2) * 0.06;
-      
+
       if (mousePosRef.current) {
         const targetRotX = mousePosRef.current.y * 0.12;
         const targetRotY = mousePosRef.current.x * 0.12;
-        mainGroup.current.rotation.x = THREE.MathUtils.lerp(mainGroup.current.rotation.x, targetRotX, 0.05);
-        mainGroup.current.rotation.y = THREE.MathUtils.lerp(mainGroup.current.rotation.y, targetRotY, 0.05);
+        mainGroup.current.rotation.x = THREE.MathUtils.lerp(
+          mainGroup.current.rotation.x,
+          targetRotX,
+          0.05,
+        );
+        mainGroup.current.rotation.y = THREE.MathUtils.lerp(
+          mainGroup.current.rotation.y,
+          targetRotY,
+          0.05,
+        );
       }
     }
 
@@ -191,7 +202,11 @@ function WaffleScene({ mousePosRef }: { mousePosRef: React.RefObject<{ x: number
           <mesh position={[0.1, 0.3, 0.06]} rotation={[0, 0, 0.5]} material={materials.chocolate}>
             <boxGeometry args={[1.4, 0.1, 0.08]} />
           </mesh>
-          <mesh position={[-0.2, -0.25, 0.06]} rotation={[0, 0, -0.4]} material={materials.chocolate}>
+          <mesh
+            position={[-0.2, -0.25, 0.06]}
+            rotation={[0, 0, -0.4]}
+            material={materials.chocolate}
+          >
             <boxGeometry args={[1.5, 0.08, 0.08]} />
           </mesh>
 
@@ -206,13 +221,28 @@ function WaffleScene({ mousePosRef }: { mousePosRef: React.RefObject<{ x: number
 
         {/* Almond Flakes & Crumbs */}
         <group position={[0, 0, 0.28]}>
-          <mesh position={[-0.35, 0.35, 0.04]} material={materials.almond} rotation={[0.5, 0.2, 0.8]} scale={0.75}>
+          <mesh
+            position={[-0.35, 0.35, 0.04]}
+            material={materials.almond}
+            rotation={[0.5, 0.2, 0.8]}
+            scale={0.75}
+          >
             <dodecahedronGeometry args={[0.08]} />
           </mesh>
-          <mesh position={[0.45, -0.35, 0.04]} material={materials.almond} rotation={[0.1, 0.9, 0.2]} scale={0.85}>
+          <mesh
+            position={[0.45, -0.35, 0.04]}
+            material={materials.almond}
+            rotation={[0.1, 0.9, 0.2]}
+            scale={0.85}
+          >
             <dodecahedronGeometry args={[0.08]} />
           </mesh>
-          <mesh position={[0.1, -0.15, 0.04]} material={materials.crumb} rotation={[0.6, 0.4, 0.1]} scale={0.55}>
+          <mesh
+            position={[0.1, -0.15, 0.04]}
+            material={materials.crumb}
+            rotation={[0.6, 0.4, 0.1]}
+            scale={0.55}
+          >
             <dodecahedronGeometry args={[0.07]} />
           </mesh>
         </group>
@@ -254,11 +284,11 @@ function WaffleScene({ mousePosRef }: { mousePosRef: React.RefObject<{ x: number
 // Fallback Premium CSS 3D Waffle Card (Static/Low-overhead)
 function WaffleFallback({ mousePos }: { mousePos: { x: number; y: number } }) {
   return (
-    <div 
+    <div
       className="relative w-72 h-72 sm:w-96 sm:h-96 md:w-[480px] md:h-[480px] transition-transform duration-300 ease-out flex items-center justify-center"
       style={{
         transform: `perspective(1000px) rotateX(${mousePos.y * 10}deg) rotateY(${mousePos.x * 10}deg)`,
-        transformStyle: "preserve-3d"
+        transformStyle: "preserve-3d",
       }}
     >
       <div className="absolute inset-0 bg-brand-orange/20 rounded-full blur-[80px] scale-75 pointer-events-none" />
@@ -284,7 +314,7 @@ export default function Waffle3D() {
     const handleMouseMove = (e: MouseEvent) => {
       const x = (e.clientX / window.innerWidth - 0.5) * 2;
       const y = (e.clientY / window.innerHeight - 0.5) * 2;
-      
+
       if (isAvailable) {
         mousePosRef.current = { x, y };
       } else {
@@ -304,7 +334,7 @@ export default function Waffle3D() {
     <div className="w-full h-full min-h-[400px] md:min-h-[500px] relative flex items-center justify-center select-none">
       {/* Background glow overlay */}
       <div className="absolute w-[60%] h-[60%] bg-brand-orange/8 blur-[120px] rounded-full scale-90 pointer-events-none" />
-      
+
       {/* Canvas optimized: limited DPR (1.3 max) to prevent lag on 4K/high-DPI screens */}
       <Canvas
         camera={{ position: [0, 0, 4.6], fov: 52 }}
@@ -321,18 +351,18 @@ export default function Waffle3D() {
           intensity={1.0}
           color="#ffd1a9"
         />
-        
+
         <Suspense fallback={null}>
           <Center>
             <WaffleScene mousePosRef={mousePosRef} />
           </Center>
         </Suspense>
-        
-        <OrbitControls 
-          enableZoom={false} 
-          enablePan={false} 
+
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
           minPolarAngle={Math.PI / 3}
-          maxPolarAngle={Math.PI * 2 / 3}
+          maxPolarAngle={(Math.PI * 2) / 3}
         />
       </Canvas>
     </div>

@@ -31,7 +31,7 @@ export default function Navigation() {
       const offsetPosition = elementPosition - offset;
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: "smooth",
       });
     }
   };
@@ -40,9 +40,7 @@ export default function Navigation() {
     <>
       <motion.nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-bg-primary border-b border-border py-5 shadow-sm"
-            : "bg-transparent py-8"
+          scrolled ? "bg-bg-primary border-b border-border py-5 shadow-sm" : "bg-transparent py-8"
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -77,7 +75,9 @@ export default function Navigation() {
                 key={link.href}
                 onClick={() => handleClick(link.href)}
                 className={`text-[13px] font-sans font-medium tracking-widest uppercase transition-colors duration-300 relative py-1 group ${
-                  scrolled ? "text-text-secondary hover:text-brand-orange" : "text-[#FCFBF8]/80 hover:text-brand-orange"
+                  scrolled
+                    ? "text-text-secondary hover:text-brand-orange"
+                    : "text-[#FCFBF8]/80 hover:text-brand-orange"
                 }`}
               >
                 {link.label}

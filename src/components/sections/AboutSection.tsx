@@ -37,8 +37,9 @@ export default function AboutSection() {
             </span>
           </h2>
           <p className="text-zinc-400 max-w-2xl mx-auto text-lg leading-relaxed">
-            Just Waffles is Bengaluru&apos;s affordable premium waffle brand. We believe every bite should be
-            memorable — crafted with passion, served with warmth, and designed to be enjoyed more.
+            Just Waffles is Bengaluru&apos;s affordable premium waffle brand. We believe every bite
+            should be memorable — crafted with passion, served with warmth, and designed to be
+            enjoyed more.
           </p>
         </motion.div>
 
@@ -49,7 +50,13 @@ export default function AboutSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          {["100% Eggless", "Freshly Made", "Hygienically Prepared", "Premium Quality", "Student Friendly"].map((tag) => (
+          {[
+            "100% Eggless",
+            "Freshly Made",
+            "Hygienically Prepared",
+            "Premium Quality",
+            "Student Friendly",
+          ].map((tag) => (
             <span
               key={tag}
               className="px-5 py-2 glass-card rounded-full text-sm text-zinc-300 font-medium"
