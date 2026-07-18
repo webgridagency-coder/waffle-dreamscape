@@ -16,7 +16,7 @@ const steps = [
     title: "Silken Batter",
     desc: "Folded gently by hand with pure organic dairy, our eggless recipe rests at a cooled temperature to slow-mature the flavors.",
     details: "12-Hour Maturation • Organic Dairy • Egg-Free Recipe",
-    image: "/new_images/silken-batter.jpg.png",
+    image: "/new_images/silken-batter.jpg",
     icon: RotateCcw,
   },
   {

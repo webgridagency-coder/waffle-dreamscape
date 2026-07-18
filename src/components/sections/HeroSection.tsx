@@ -77,18 +77,18 @@ export default function HeroSection() {
             initial="hidden"
             animate="visible"
           >
-            <motion.div className="mb-8 select-none" variants={fadeUpVariants}>
+            <motion.div className="mb-6 select-none" variants={fadeUpVariants}>
               <img
-                src="/logo.png"
+                src="/updatedheroimage.jpeg"
                 alt="Just Waffles Logo"
-                className="w-[min(78vw,28rem)] sm:w-[min(64vw,34rem)] lg:w-[min(56vw,38rem)] h-auto object-contain"
+                className="mx-auto block w-[min(90vw,40rem)] lg:w-[min(70vw,46rem)] h-auto object-contain"
                 loading="eager"
               />
             </motion.div>
 
             {/* Description (max 3 lines, light warm cream) */}
             <motion.p
-              className="text-[14px] sm:text-[15px] leading-relaxed text-[#FCFBF8]/80 font-sans font-light mb-10"
+              className="text-[14px] sm:text-[15px] leading-relaxed text-[#FCFBF8]/80 font-sans font-light mb-8"
               variants={fadeUpVariants}
             >
               Handcrafted eggless waffles prepared with carefully selected ingredients, premium
